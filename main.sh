@@ -20,14 +20,16 @@ set -o pipefail
 set -x
 
 export SCRIPT_DIR=$(dirname -- "$(readlink -f "${BASH_SOURCE[0]}" || realpath "${BASH_SOURCE[0]}")")
+export MARK="5.7"
 
 main() {
 
     export
 
-    curl -LO https://github.com/kovetskiy/mark/releases/download/${MARK}}/mark_${MARK}_Linux_x86_64.tar.gz && \
+    curl -LO https://github.com/kovetskiy/mark/releases/download/${MARK}/mark_${MARK}_Linux_x86_64.tar.gz && \
     tar -xvzf mark_5.7_Linux_x86_64.tar.gz && \
-    mv mark /usr/local/bin/mark
+    chmod +x mark && \
+    sudo mv mark /usr/local/bin/mark
 
 
     "$SCRIPT_DIR/$INPUT_ACTION.sh"
