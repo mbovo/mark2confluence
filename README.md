@@ -8,9 +8,10 @@ This Action uses [mark](https://github.com/kovetskiy/mark) to accomplish this ta
 
 ### Required
 
-`action` - `[publish, test]`
+`action` - `[compile, dry-run, publish]`
 
-- `test` - Verify in dry-run the conversion will success 
+- `compile` - Compile markdown to html only
+- `dry-run` - Execute dry-run, compile markdown an d verify confluence r/o 
 - `publish` - Use the given confluence account and push the generated pages
 
 ## Required Environment variables
@@ -41,7 +42,7 @@ jobs:
     - name: Test Docs generation
       uses: draios/infra-ghaction-mark2confluence@main
       with:
-        action: "test"
+        action: "dry-run"
       env:
         BASE_URL: https://your.confluence.url 
         CONFLUENCE_USERNAME: ${{ secrets.CONFLUENCE_USERNAME }}  

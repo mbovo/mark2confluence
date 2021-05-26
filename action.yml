@@ -5,7 +5,7 @@ author: 'mbovo'
 inputs:
   action:
     required: true
-    description: 'Options: test, publish'
+    description: 'Options: compile, dry-run, publish'
 
 runs:
   using: 'node12'
