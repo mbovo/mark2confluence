@@ -1,0 +1,16 @@
+name: 'Helm test, package, push to Artifactory'
+description: 'GitHub Action for converting markdown docs to confluence pages'
+author: 'mbovo'
+
+inputs:
+  action:
+    required: true
+    description: 'Options: test, publish'
+
+runs:
+  using: 'node12'
+  main: 'main.js'
+
+branding:
+  color: blue
+  icon: check-square
