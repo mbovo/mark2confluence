@@ -17,6 +17,7 @@ This Action uses [mark](https://github.com/kovetskiy/mark) to accomplish this ta
 
 ```yaml
 BASE_URL: https://your.confluence.url # Confluence base url of your instance
+DOC_DIR: docs # Docs directory based on the git repo root 
 CONFLUENCE_USERNAME: ${{ secrets.CONFLUENCE_USERNAME }} # CONFLUENCE_USERNAME (Confluence username) must be set in GitHub Repo secrets
 CONFLUENCE_PASSWORD: ${{ secrets.CONFLUENCE_PASSWORD }} # CONFLUENCE_PASSWORD (Confluence api key) must be set in GitHub Repo secrets
 ```
@@ -53,7 +54,7 @@ jobs:
         action: "publish"
       env:
         BASE_URL: https://your.confluence.url 
-        CONFLUENCE_USERNAME: ${{ secrets.CONFLUENCE_USERNAME }}  
-        CONFLUENCE_PASSWORD: ${{ secrets.CONFLUENCE_PASSWORD }} 
+        CONFLUENCE_USERNAME: ${{ secrets.CONFLUENCE_USERNAME }}
+        CONFLUENCE_PASSWORD: ${{ secrets.CONFLUENCE_PASSWORD }}
 ```
 
