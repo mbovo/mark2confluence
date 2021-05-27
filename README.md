@@ -8,9 +8,10 @@ This Action uses [mark](https://github.com/kovetskiy/mark) to accomplish this ta
 
 ### Required
 
-`action` - `[publish, test]`
+`action` - `[publish, dry-run, verify]`
 
-- `test` - Verify in dry-run the conversion will success 
+- `verify`  - Verify only the conversion from markdown to html
+- `dry-run` - Verify in dry-run the conversion will success (connecting to confluence)
 - `publish` - Use the given confluence account and push the generated pages
 
 ## Required Environment variables
