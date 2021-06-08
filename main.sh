@@ -31,8 +31,11 @@ main() {
     chmod +x mark && \
     sudo mv mark /usr/local/bin/mark
 
-
-    "$SCRIPT_DIR/$INPUT_ACTION.sh"
+    if [[ -x "$SCRIPT_DIR/$INPUT_ACTION.sh" ]]; then
+        "$SCRIPT_DIR/$INPUT_ACTION.sh"
+    else
+        echo "Invalid action: $INPUT_ACTION"
+    fi
 
 }
 

@@ -1,6 +1,6 @@
-# action-helm-tools
+# mark2confluence
 
-GitHub Action for converting markdown files to confluence pages
+GitHub Action for converting markdown files into Confluence pages
 
 This Action uses [mark](https://github.com/kovetskiy/mark) to accomplish this task
 
