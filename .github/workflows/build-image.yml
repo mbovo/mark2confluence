@@ -1,0 +1,49 @@
+name: "Tag and build"
+on:
+  push:
+    branches: ["main"]
+    tags: ["*"]
+jobs:
+  pre-commit:
+    runs-on: self-hosted
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+    - uses: pre-commit/action@v2.0.3
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+  tagging:
+    name: "Tagging"
+    needs: pre-commit
+    runs-on: self-hosted
+    outputs:
+      next_tag: ${{ steps.tag_version.outputs.new_version }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Bump version and push tag
+        id: tag_version
+        uses: mathieudutour/github-tag-action@v5.6
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+      - run: |
+          echo Calculated Next Tag is ${{ steps.tag_version.outputs.new_tag }}
+
+      - name: Post to a Slack channel
+        if: ${{ success() }}
+        id: slack_success
+        uses: slackapi/slack-github-action@v1.15.0
+        with:
+          channel-id: 'sdcadmin-operator'
+          slack-message: ':cool-doge: `${{github.repository}}` new version: ${{env.IMAGE_NAME}}:${{needs.tagging.outputs.next_tag}}'
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
+
+      - name: Post to a Slack channel
+        if: ${{ failure() }}
+        id: slack_failure
+        uses: slackapi/slack-github-action@v1.15.0
+        with:
+          channel-id: 'sdcadmin-operator'
+          slack-message: ':warning: :bug: `${{github.repository}}` release failed, please check https://github.com/${{github.repository}}/actions/runs/${{github.run_id}}'
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}

@@ -18,7 +18,7 @@ This Action uses [mark](https://github.com/kovetskiy/mark) to accomplish this ta
 
 ```yaml
 BASE_URL: https://your.confluence.url # Confluence base url of your instance
-DOC_DIR: docs # Docs directory based on the git repo root 
+DOC_DIR: docs # Docs directory based on the git repo root
 CONFLUENCE_USERNAME: ${{ secrets.CONFLUENCE_USERNAME }} # CONFLUENCE_USERNAME (Confluence username) must be set in GitHub Repo secrets
 CONFLUENCE_PASSWORD: ${{ secrets.CONFLUENCE_PASSWORD }} # CONFLUENCE_PASSWORD (Confluence api key) must be set in GitHub Repo secrets
 ```
@@ -45,17 +45,16 @@ jobs:
       with:
         action: "test"
       env:
-        BASE_URL: https://your.confluence.url 
-        CONFLUENCE_USERNAME: ${{ secrets.CONFLUENCE_USERNAME }}  
-        CONFLUENCE_PASSWORD: ${{ secrets.CONFLUENCE_PASSWORD }} 
+        BASE_URL: https://your.confluence.url
+        CONFLUENCE_USERNAME: ${{ secrets.CONFLUENCE_USERNAME }}
+        CONFLUENCE_PASSWORD: ${{ secrets.CONFLUENCE_PASSWORD }}
 
     - name: Publish Docs
       uses: draios/infra-ghaction-mark2confluence@main
       with:
         action: "publish"
       env:
-        BASE_URL: https://your.confluence.url 
+        BASE_URL: https://your.confluence.url
         CONFLUENCE_USERNAME: ${{ secrets.CONFLUENCE_USERNAME }}
         CONFLUENCE_PASSWORD: ${{ secrets.CONFLUENCE_PASSWORD }}
 ```
-
