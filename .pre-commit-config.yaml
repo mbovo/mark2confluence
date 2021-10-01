@@ -1,0 +1,23 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.0.1
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-added-large-files
+      - id: check-merge-conflict
+      - id: check-symlinks
+      - id: detect-private-key
+      - id: check-yaml
+        args: ["-m"]
+  - repo: https://github.com/jumanjihouse/pre-commit-hooks
+    rev: 2.1.5  # or specific git tag
+    hooks:
+      - id: shellcheck
+        # args:
+        #   - "-e"
+        #   - "SC1090"
+        #   - "-e"
+        #   - "SC1091"

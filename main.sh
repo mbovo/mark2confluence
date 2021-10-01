@@ -19,8 +19,11 @@ set -o nounset
 set -o pipefail
 set -x
 
-export SCRIPT_DIR=$(dirname -- "$(readlink -f "${BASH_SOURCE[0]}" || realpath "${BASH_SOURCE[0]}")")
-export MARK="5.7"
+SCRIPT_DIR=$(dirname -- "$(readlink -f "${BASH_SOURCE[0]}" || realpath "${BASH_SOURCE[0]}")")
+MARK="5.7"
+
+export SCRIPT_DIR
+export MARK
 
 main() {
 
@@ -31,10 +34,10 @@ main() {
     chmod +x mark && \
     sudo mv mark /usr/local/bin/mark
 
-    if [[ -x "$SCRIPT_DIR/$INPUT_ACTION.sh" ]]; then
-        "$SCRIPT_DIR/$INPUT_ACTION.sh"
+    if [[ -x "${SCRIPT_DIR}/${INPUT_ACTION}.sh" ]]; then
+        "${SCRIPT_DIR}/${INPUT_ACTION}.sh"
     else
-        echo "Invalid action: $INPUT_ACTION"
+        echo "Invalid action: ${INPUT_ACTION}"
     fi
 
 }
