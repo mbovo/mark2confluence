@@ -1,4 +1,5 @@
 #!/bin/bash -l
+set -eo pipefail
 
 find . -type d -not -path '**/\.*' -path "./${DOC_DIR_PATTERN}" |
     while read doc_dir; do
